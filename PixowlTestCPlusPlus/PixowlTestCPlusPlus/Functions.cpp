@@ -4,7 +4,8 @@ void Add(struct node** head_ref, int new_value)
 {
     //Declare new node
     struct node* new_node = new node;
-
+	cout << "Se agrega nodo: " << new_node << "\n";
+	cout << "Se agrega valor al nodo: " << new_value << "\n";
     //Copy value in the new node value
     new_node->value = new_value;
 
@@ -42,6 +43,13 @@ int SumNodesUtil(struct node* head)
 
 int Exercise1()
 {
+	cout << "/-------------------\\ \n";
+	cout << "|  Pixowl C++ Test  | \n";
+	cout << "\\-------------------/ \n";
+	cout << "\n";
+	cout << "\\-----EXercise1-----/ \n";
+	cout << "\n";
+
     struct node* head = NULL;
 
     Add(&head, 5);
@@ -134,6 +142,12 @@ int Exercise2()
 
 void TextMenuExercise2()
 {
+	cout << "/-------------------\\ \n";
+	cout << "|  Pixowl C++ Test  | \n";
+	cout << "\\-------------------/ \n";
+	cout << "\n";
+	cout << "\\-----EXercise2-----/ \n";
+	cout << "\n";
 	cout << "1: A) \n";
 	cout << "2: B) \n";
 	cout << "3: C) \n";
@@ -408,6 +422,12 @@ int Exercise2Hmain()
 
 int Exercise3()
 {
+	cout << "/-------------------\\ \n";
+	cout << "|  Pixowl C++ Test  | \n";
+	cout << "\\-------------------/ \n";
+	cout << "\n";
+	cout << "\\-----EXercise3-----/ \n";
+	cout << "\n";
 	//char* str;
 	//char* str2;
 	//char* str3;
@@ -440,6 +460,12 @@ int Exercise3()
 
 int Exercise4()
 {
+	cout << "/-------------------\\ \n";
+	cout << "|  Pixowl C++ Test  | \n";
+	cout << "\\-------------------/ \n";
+	cout << "\n";
+	cout << "\\-----EXercise4-----/ \n";
+	cout << "\n";
 	//int32_t* dst = GetScreenARGB();
 	//int offset = SCR_W * SCR_H + 1;
 	//while (‐‐offset)
@@ -455,39 +481,79 @@ int Exercise4()
 
 int Exercise5()
 {
+	cout << "/-------------------\\ \n";
+	cout << "|  Pixowl C++ Test  | \n";
+	cout << "\\-------------------/ \n";
+	cout << "\n";
+	cout << "\\-----EXercise5-----/ \n";
+	cout << "\n";
+	
+	Utils util;
+	
+	cout << "Se crea una Clase Util con el metodo check \n";
+	
+	bool utilcheck = util.check("C:\\temp\\Newtext.txt");
+
 	return 0;
 }
 
-//bool Utils::check(std::string arg)
-//{
-//	auto foo = fopen(arg, "rb");
-//	if (foo != nullptr)
-//	{
-//		fseek(foo, 0, SEEK_END);
-//		size_t baz = ftell(foo);
-//		rewind(foo);
-//
-//		std::string bar;
-//		bar.resize(baz);
-//		fread(&bar[0], baz, 1, foo);
-//
-//		if (bar.find("nick") != std::string::npos)
-//		{
-//			return true;
-//		}
-//		else if (bar.find("mail") != std::string::npos);
-//		{
-//			return true;
-//
-//		}
-//	}
-//	fclose(foo);
-//}
+bool Utils::check(std::string arg)
+{
+	bool result = false;
+	char* caracter;
+	
+	caracter = (char*)malloc(sizeof(arg));
+
+#pragma warning(suppress : 4996)
+	strcpy(caracter, arg.c_str());
+	cout << "Se intentara abrir el archivo : " << caracter << "\n";
+#pragma warning(suppress : 4996)
+	auto foo = fopen(caracter, "rb");
+	if (foo != nullptr)
+	{
+		cout << "fopen funciona correctamente \n";
+		fseek(foo, 0, SEEK_END);
+		size_t baz = ftell(foo);
+		rewind(foo);
+
+		std::string bar;
+		bar.resize(baz);
+		fread(&bar[0], baz, 1, foo);
+
+		std::size_t found = bar.find("nick");
+		std::size_t found2 = bar.find("mail");
+
+		if (bar.find("nick") != std::string::npos)
+		{
+			result = true;
+			return result;
+		}
+		if (bar.find("mail") != std::string::npos)
+		{
+			result = true;
+			return result;
+		}
+		fclose(foo);
+	}
+	else
+	{
+		cout << "Problema al abrir el archivo. \n";
+	}
+}
 
 //Exercise 6
 
 int Exercise6()
 {
+	cout << "/-------------------\\ \n";
+	cout << "|  Pixowl C++ Test  | \n";
+	cout << "\\-------------------/ \n";
+	cout << "\n";
+	cout << "\\-----EXercise2-----/ \n";
+	cout << "\n";
+	cout << "Se llena una lista del 1 al 1000 y luego se borra un numero random. \n";
+	cout << "Se completa la lista de 999 elementos, luego se calcula el faltante. \n";
+	cout << "Por ultimo se muestra el numero faltante. \n";
 	Exercise6Main();
 	return 0;
 }

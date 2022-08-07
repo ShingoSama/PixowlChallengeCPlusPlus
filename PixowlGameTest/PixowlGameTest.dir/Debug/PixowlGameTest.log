@@ -1,2 +1,3 @@
-﻿  HelloWorldScene.cpp
+﻿  BadFish.cpp
+Classes\BadFish.cpp(52,28): warning C4305: 'argumento': truncamiento de 'double' a 'float'
   PixowlGameTest.vcxproj -> E:\Documentos\UniytProjects\PixowlChallengeCPlusPlus\PixowlGameTest\bin\PixowlGameTest\Debug\PixowlGameTest.exe

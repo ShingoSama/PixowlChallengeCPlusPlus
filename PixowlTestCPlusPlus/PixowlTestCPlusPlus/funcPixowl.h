@@ -76,6 +76,11 @@ int Exercise4();
 //Exercise 5
 //
 
+class Utils
+{
+public:
+    bool check(std::string arg);
+};
 int Exercise5();
 
 //Exercise 6

@@ -17,12 +17,17 @@ int main()
 		case 1:
 			Exercise1();
 			system("pause");
+			break;
 		case 2:
 			Exercise2();
 			system("pause");
 			break;
 		case 3:
 			Exercise3();
+			system("pause");
+			break;
+		case 5:
+			Exercise5();
 			system("pause");
 			break;
 		case 6:
