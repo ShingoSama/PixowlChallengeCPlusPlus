@@ -12,7 +12,6 @@ void TextMenuMain();
 //Exercise 1
 //
 
-
 struct node
 {
     int value;
@@ -98,3 +97,4 @@ void DisorderList(int values[], int amountTimes);
 //
 
 void Exercise7();
+vector<string> split(string s, string delimiter);

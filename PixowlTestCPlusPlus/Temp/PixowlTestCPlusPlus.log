@@ -1,4 +1,2 @@
-﻿  Functions.cpp
-E:\Documentos\UniytProjects\PixowlChallengeCPlusPlus\PixowlTestCPlusPlus\PixowlTestCPlusPlus\Functions.cpp(507,2): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  Main.cpp
-  Generando código...
+﻿  Main.cpp
+  PixowlTestCPlusPlus.vcxproj -> E:\Documentos\UniytProjects\PixowlChallengeCPlusPlus\PixowlTestCPlusPlus\Bin\PixowlTestCPlusPlus.exe
