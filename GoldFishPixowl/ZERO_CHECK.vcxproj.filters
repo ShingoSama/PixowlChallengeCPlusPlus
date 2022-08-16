@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Documentos\UniytProjects\PixowlChallengeCPlusPlus\GoldFishPixowl\CMakeFiles\57b7c3b0f81768cc11b9b018fe1b9181\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C8E7AE85-CDDD-3965-88EB-A38B0C3D5D95}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
