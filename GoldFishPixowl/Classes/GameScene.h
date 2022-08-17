@@ -12,10 +12,7 @@ class GameScene : public cocos2d::Scene
 {
 public:
     static cocos2d::Scene* createScene();
-    cocos2d::Size visibleSize;
-    cocos2d::Vec2 origin;
-    cocos2d::Vec2 centerPosition;
-    cocos2d::ui::Button* buyShootsButton;
+
 
     virtual bool init();
     // implement the "static create()" method manually
@@ -30,7 +27,10 @@ private:
     float spawnTimes;
     cocos2d::Label* scoreLabel;
     cocos2d::PhysicsWorld* sceneWorld;
-
+    cocos2d::Size visibleSize;
+    cocos2d::Vec2 origin;
+    cocos2d::Vec2 centerPosition;
+    cocos2d::ui::Button* buyShootsButton;
     void setPhysicsWorld(cocos2d::PhysicsWorld* world) { sceneWorld = world; }
     void SpawnBadFish(float dt);
     bool onContactBegin(cocos2d::PhysicsContact &contact);

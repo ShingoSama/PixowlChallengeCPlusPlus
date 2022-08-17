@@ -33,34 +33,9 @@ bool GameOverScene::init()
     GetScreenDimensions();
     SetGameBackground();
     AddGameOverButton();
-    
-    highScoreLabel = Label::createWithTTF("2", FONTGAME, 35);
-    highScoreLabel->setColor(Color3B::RED);
+    AddHighScoreLabel();
+    AddScoreLabel();
 
-    UserDefault* def = UserDefault::getInstance();
-    auto highScore = def->getIntegerForKey(HIGHSCORE, 0);
-
-    if (score > highScore)
-    {
-        highScore = score;
-        def->setIntegerForKey(HIGHSCORE, highScore);
-        highScoreLabel->setString(HIGHSCORETEXT2 + std::to_string(highScore));
-    }
-    else
-    {
-        highScoreLabel->setString(HIGHSCORETEXT1 + std::to_string(highScore));
-    }
-    def->flush();
-
-    highScoreLabel->setPosition(Vec2(centerPosition.x, centerPosition.y - 80));
-    this->addChild(highScoreLabel, 10);
-
-    scoreLabel = Label::createWithTTF("2", FONTGAME, 35);
-    scoreLabel->setColor(Color3B::BLUE);
-    scoreLabel->setString(SCORETEXT1 + std::to_string(score));
-    scoreLabel->setPosition(Vec2(centerPosition.x, centerPosition.y - 40));
-    this->addChild(scoreLabel, 10);
-    
     return true;
 }
 
@@ -99,4 +74,36 @@ void GameOverScene::AddGameOverButton()
     addChild(gameOverButton, 1);
 
     gameOverButton->addTouchEventListener(CC_CALLBACK_1(GameOverScene::GoToGameScene, this));
+}
+
+void GameOverScene::AddHighScoreLabel()
+{
+    highScoreLabel = Label::createWithTTF("2", FONTGAME, 35);
+    highScoreLabel->setColor(Color3B::RED);
+
+    UserDefault* def = UserDefault::getInstance();
+    auto highScore = def->getIntegerForKey(HIGHSCORE, 0);
+
+    if (score > highScore)
+    {
+        highScore = score;
+        def->setIntegerForKey(HIGHSCORE, highScore);
+        highScoreLabel->setString(HIGHSCORETEXT2 + std::to_string(highScore));
+    }
+    else
+    {
+        highScoreLabel->setString(HIGHSCORETEXT1 + std::to_string(highScore));
+    }
+    def->flush();
+    highScoreLabel->setPosition(Vec2(centerPosition.x, centerPosition.y - 80));
+    this->addChild(highScoreLabel, 10);
+}
+
+void GameOverScene::AddScoreLabel()
+{
+    scoreLabel = Label::createWithTTF("2", FONTGAME, 35);
+    scoreLabel->setColor(Color3B::BLUE);
+    scoreLabel->setString(SCORETEXT1 + std::to_string(score));
+    scoreLabel->setPosition(Vec2(centerPosition.x, centerPosition.y - 40));
+    this->addChild(scoreLabel, 10);
 }

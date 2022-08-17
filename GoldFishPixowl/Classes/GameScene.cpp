@@ -60,8 +60,6 @@ bool GameScene::init()
     //Add score label to screen
     AddGameScoreLabel();
 
-    //buyShootsButton->addTouchEventListener(CC_CALLBACK_1(GameScene::BuyShoot, this));
-
     return true;
 }
 
@@ -78,10 +76,12 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)
 {
     PhysicsBody* a = contact.getShapeA()->getBody();
     PhysicsBody* b = contact.getShapeB()->getBody();
+    //Reviso si hay contacto entre las burbujas y los peces malos
     if (((3 == a->getCollisionBitmask()) && (2 == b->getCollisionBitmask())) ||
         ((2 == a->getCollisionBitmask()) && (3 == b->getCollisionBitmask())))
     {
         score += 1;
+        //este arreglo es para aumentar la cantidad de peces malosos
         if (score == sumBadFish)
         {
             sumBadFish = (sumBadFish + 2) * 2;
@@ -89,6 +89,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)
         }
         scoreLabel->setString(std::to_string(score));
         bubble->Destroy();
+        //reviso si hay algun null, no deberia
         if (a->getNode() != NULL)
         {
             a->getNode()->removeFromParent();
@@ -98,10 +99,13 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)
             b->getNode()->removeFromParent();
         }
     }
+    //Reviso si hay contacto con los peces y el player
     if (((1 == a->getCollisionBitmask()) && (2 == b->getCollisionBitmask())) || 
         ((2 == a->getCollisionBitmask()) && (1 == b->getCollisionBitmask())))
     {
+        //Sound of dead :(
         goldFish->Dead();
+        //Call Game Over screen and send the player score
         auto scene = GameOverScene::createScene( score );
         Director::getInstance()->replaceScene(scene);
     }
@@ -112,7 +116,7 @@ bool GameScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
     Vec2 posDest = Vec2(touch->getLocation().x, touch->getLocation().y);
 
-    goldFish->Shoot(this);
+    goldFish->Shoot();
     goldFish->Rotate(posDest);
 
     bubble = new Bubble(this, posDest);

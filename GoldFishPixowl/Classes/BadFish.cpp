@@ -51,6 +51,7 @@ void BadFish::SpawnBadFish(cocos2d::Scene* layer)
 	Vec2 movingPosition;
 	int direction;
 
+
 	if (randompos > UPSPAWN && randompos < RIGHTPAWN)
 	{
 		//UPSPAWN
@@ -82,8 +83,6 @@ void BadFish::SpawnBadFish(cocos2d::Scene* layer)
 	}
 	badfish->setPosition(badfishposition);
 	badfish->setScale(0.1, 0.1);
-
-
 
 	auto badfishAction = MoveBy::create(5, movingPosition);
 
