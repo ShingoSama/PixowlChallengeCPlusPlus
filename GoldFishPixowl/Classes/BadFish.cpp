@@ -11,21 +11,26 @@ BadFish::BadFish()
 
 void BadFish::SpawnBadFish(cocos2d::Scene* layer)
 {
-	auto badfish = Sprite::create("Assets/Sprites/badFish.png");
+	auto badfish = Sprite::create(BADFISHSPRITE);
 
 	auto badfishbody = PhysicsBody::createCircle(badfish->getContentSize().width / 2);
 	badfishbody->setCollisionBitmask(BADFISH_COLLISION_BITMASK);
 	badfishbody->setDynamic(false);
 	badfishbody->setContactTestBitmask(true);
 	badfish->setPhysicsBody(badfishbody);
-	auto randompos = CCRANDOM_0_1();
 
 	//UPSPAWN 0.00
 	//RIGHTPAWN 0.25
 	//DOWNPAWN 0.50
 	//LEFTPAWN 0.75
+
+	auto randompos = CCRANDOM_0_1();
+
+	// Position of AXIS x or y
+
 	auto randompos2 = CCRANDOM_0_1();
 	float pospercentage;
+	
 	if (randompos2 > UPSPAWN && randompos2 < RIGHTPAWN)
 	{
 		pospercentage = 0.25;

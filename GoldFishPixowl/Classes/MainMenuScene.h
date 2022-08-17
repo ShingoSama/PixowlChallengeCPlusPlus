@@ -9,12 +9,7 @@ class MainMenuScene : public cocos2d::Scene
 {
 public:
     static cocos2d::Scene* createScene();
-    cocos2d::Size visibleSize;
-    cocos2d::Vec2 origin;
-    cocos2d::Vec2 centerPosition;
-    cocos2d::ui::Button* startButton;
-    cocos2d::Label* gameLabel;
-    cocos2d::AudioEngine audiomenu;
+
     virtual bool init();
 
     // a selector callback
@@ -23,12 +18,21 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(MainMenuScene);
 private:
+    cocos2d::Size visibleSize;
+    cocos2d::Vec2 origin;
+    cocos2d::Vec2 centerPosition;
+    cocos2d::ui::Button* startButton;
+    cocos2d::Label* gameLabel;
+    cocos2d::Label* highScoreLabel;
+    cocos2d::AudioEngine audiomenu;
     void GoToGameScene( cocos2d::Ref *sender);
     void SetGameBackground();
     void GetScreenDimensions();
     void SetButtonStart();
     void AddGameMusic();
     void AddGameLabel();
+    void AddHighScoreLabel();
+    int GetHighScore();
 };
 
 #endif

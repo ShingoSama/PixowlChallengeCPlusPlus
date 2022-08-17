@@ -10,6 +10,7 @@ Bubble::Bubble(cocos2d::Scene* layer, cocos2d::Vec2 posDest)
 	
 	bubble = Sprite::create(BUBBLESPRITE);
 	Vec2 bubbleposition = Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y);
+	
 	bubble->setPosition(bubbleposition);
 	bubble->setScale(0.2, 0.2);
 	auto bubbleBody = PhysicsBody::createCircle(bubble->getContentSize().width/2);
@@ -38,6 +39,7 @@ Bubble::Bubble(cocos2d::Scene* layer, cocos2d::Vec2 posDest)
 		movedestination.y = (posDest.y - bubbleposition.y);
 	}
 	bubbleBody->setVelocity(Vec2(movedestination.x*1.1, movedestination.y*1.1));
+
 	layer->addChild(bubble, 3);
 }
 

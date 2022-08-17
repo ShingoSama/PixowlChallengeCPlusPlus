@@ -45,11 +45,12 @@ bool GameScene::init()
     
     spawnTimes = 1;
     //Spawn enemies by 2 secs
-    this->schedule(CC_SCHEDULE_SELECTOR(GameScene::SpawnBadFish), 2);
+    this->schedule(CC_SCHEDULE_SELECTOR(GameScene::SpawnBadFish), 1.5);
 
     //Instance gold fish (player)
     goldFish = new GoldFish(this);
     score = 0;
+    sumBadFish = 10;
     //Add listener to collitions
     AddContactListener();
 
@@ -59,11 +60,14 @@ bool GameScene::init()
     //Add score label to screen
     AddGameScoreLabel();
 
+    //buyShootsButton->addTouchEventListener(CC_CALLBACK_1(GameScene::BuyShoot, this));
+
     return true;
 }
 
 void GameScene::SpawnBadFish(float dt)
 {
+    goldFish->CloseMouth(this);
     for (int i = 0; i < spawnTimes; i++)
     {
         badFish.SpawnBadFish(this);
@@ -78,8 +82,9 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)
         ((2 == a->getCollisionBitmask()) && (3 == b->getCollisionBitmask())))
     {
         score += 1;
-        if ((score % 4) == 0)
+        if (score == sumBadFish)
         {
+            sumBadFish = (sumBadFish + 2) * 2;
             spawnTimes += 1;
         }
         scoreLabel->setString(std::to_string(score));
@@ -97,7 +102,7 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)
         ((2 == a->getCollisionBitmask()) && (1 == b->getCollisionBitmask())))
     {
         goldFish->Dead();
-        auto scene = GameOverScene::createScene();
+        auto scene = GameOverScene::createScene( score );
         Director::getInstance()->replaceScene(scene);
     }
     return true;
@@ -106,12 +111,12 @@ bool GameScene::onContactBegin(cocos2d::PhysicsContact& contact)
 bool GameScene::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {
     Vec2 posDest = Vec2(touch->getLocation().x, touch->getLocation().y);
-    
-    if (true)
-    {
-        goldFish->Shoot(this);
-        bubble = new Bubble(this, posDest);
-    }
+
+    goldFish->Shoot(this);
+    goldFish->Rotate(posDest);
+
+    bubble = new Bubble(this, posDest);
+
     return true;
 }
 
@@ -146,10 +151,10 @@ void GameScene::SetGameBackground()
 
 void GameScene::AddGameScoreLabel()
 {
-    scoreLabel = Label::createWithTTF("2", "fonts/Marker Felt.ttf", 15);
+    scoreLabel = Label::createWithTTF("2", FONTGAME, 25);
     scoreLabel->setColor(Color3B::BLUE);
     scoreLabel->setString("0");
-    Vec2 scorePosition = Vec2(centerPosition.x, visibleSize.height - 20);
+    Vec2 scorePosition = Vec2(centerPosition.x, visibleSize.height - 30);
     scoreLabel->setPosition(scorePosition);
     this->addChild(scoreLabel, 10);
 }

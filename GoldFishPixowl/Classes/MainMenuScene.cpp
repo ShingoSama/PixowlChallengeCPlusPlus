@@ -30,7 +30,7 @@ bool MainMenuScene::init()
     //Get screen dimension to set the sprites
     GetScreenDimensions();
 
-    //
+    //Add game music with loop (if is not running)
     if (!(audiomenu.isLoop(0)))
     {
         AddGameMusic();
@@ -42,9 +42,14 @@ bool MainMenuScene::init()
     //Button Start
     SetButtonStart();
 
+    //Add listener to start button
     startButton->addTouchEventListener(CC_CALLBACK_1(MainMenuScene::GoToGameScene, this));
 
+    //Add the name of the game
     AddGameLabel();
+
+    //Add high score label
+    AddHighScoreLabel();
 
     return true;
 }
@@ -74,6 +79,7 @@ void MainMenuScene::SetButtonStart()
     startButton = ui::Button::create();
     startButton->setTitleText(STARTTEXT);
     startButton->setColor(Color3B::WHITE);
+    startButton->setTitleFontSize(25);
     Vec2 buttonPosition = Vec2(centerPosition);
     startButton->setPosition(buttonPosition);
     addChild(startButton, 1);
@@ -87,10 +93,28 @@ void MainMenuScene::AddGameMusic()
 
 void MainMenuScene::AddGameLabel()
 {
-    gameLabel = Label::createWithTTF("2", "fonts/Marker Felt.ttf", 25);
+    gameLabel = Label::createWithTTF("2", FONTGAME, 40);
     gameLabel->setColor(Color3B::BLUE);
     gameLabel->setString(GAMENAME);
     Vec2 scorePosition = Vec2(centerPosition.x, visibleSize.height - 50);
     gameLabel->setPosition(scorePosition);
     this->addChild(gameLabel, 10);
+}
+
+void MainMenuScene::AddHighScoreLabel()
+{
+    highScoreLabel = Label::createWithTTF("2", FONTGAME, 25);
+    highScoreLabel->setColor(Color3B::RED);
+    highScoreLabel->setString(HIGHSCORETEXT1 + std::to_string(GetHighScore()));
+    Vec2 scorePosition = Vec2(centerPosition.x, centerPosition.y - 200);
+    highScoreLabel->setPosition(scorePosition);
+    this->addChild(highScoreLabel, 10);
+}
+
+int MainMenuScene::GetHighScore()
+{
+    UserDefault* def = UserDefault::getInstance();
+    auto highScore = def->getIntegerForKey(HIGHSCORE, 0);
+    def->flush();
+    return highScore;
 }

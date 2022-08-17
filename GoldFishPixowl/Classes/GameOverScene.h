@@ -8,10 +8,12 @@
 class GameOverScene : public cocos2d::Scene
 {
 public:
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(unsigned int tempscore);
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     cocos2d::Vec2 centerPosition;
+    cocos2d::Label* scoreLabel;
+    cocos2d::Label* highScoreLabel;
     virtual bool init();
 
     // a selector callback
